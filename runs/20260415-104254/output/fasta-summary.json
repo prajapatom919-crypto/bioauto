@@ -1,0 +1,15 @@
+{
+  "records": 1,
+  "total_length": 5379,
+  "average_length": 5379.0,
+  "gc_percent": 41.29,
+  "n_bases": 0,
+  "sequences": [
+    {
+      "name": "NM_001407571.1:391-5769 Homo sapiens BRCA1 DNA repair associated (BRCA1), transcript variant 6, mRNA",
+      "length": 5379,
+      "gc_percent": 41.29,
+      "n_bases": 0
+    }
+  ]
+}

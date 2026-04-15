@@ -1,0 +1,50 @@
+{
+  "workflows": [
+    {
+      "id": "fasta_summary",
+      "name": "FASTA summary",
+      "description": "Built-in sequence counts, length, GC percent, and per-record report.",
+      "executable": "builtin",
+      "input_hint": "FASTA"
+    },
+    {
+      "id": "seqkit_stats",
+      "name": "seqkit stats",
+      "description": "Runs seqkit stats on FASTA or FASTQ files.",
+      "executable": "seqkit",
+      "command": ["seqkit", "stats", "{input}"],
+      "input_hint": "FASTA or FASTQ"
+    },
+    {
+      "id": "fastqc",
+      "name": "FastQC quality check",
+      "description": "Runs FastQC and writes the report into the run output folder.",
+      "executable": "fastqc",
+      "command": ["fastqc", "{input}", "--outdir", "{output_dir}", "--threads", "{threads}"],
+      "default_threads": 2,
+      "input_hint": "FASTQ"
+    },
+    {
+      "id": "blastn",
+      "name": "BLASTN search",
+      "description": "Runs local BLASTN against a database path that you provide.",
+      "executable": "blastn",
+      "command": [
+        "blastn",
+        "-query",
+        "{input}",
+        "-db",
+        "{database}",
+        "-out",
+        "{output_dir}/blastn.tsv",
+        "-outfmt",
+        "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore",
+        "-num_threads",
+        "{threads}"
+      ],
+      "default_threads": 2,
+      "requires_database": true,
+      "input_hint": "FASTA"
+    }
+  ]
+}

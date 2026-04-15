@@ -1,0 +1,15 @@
+{
+  "records": 1,
+  "total_length": 1628,
+  "average_length": 1628.0,
+  "gc_percent": 57.19,
+  "n_bases": 0,
+  "sequences": [
+    {
+      "name": "NM_001258.4 Homo sapiens cyclin dependent kinase 3 (CDK3), mRNA",
+      "length": 1628,
+      "gc_percent": 57.19,
+      "n_bases": 0
+    }
+  ]
+}

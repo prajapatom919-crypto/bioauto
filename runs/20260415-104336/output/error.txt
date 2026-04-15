@@ -1,0 +1,1 @@
+'blastn' is not installed or is not on PATH. Install it, then run this workflow again.

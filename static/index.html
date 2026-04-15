@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BioAuto</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main>
+    <section class="intro">
+      <p class="eyebrow">Bioinformatics Automation</p>
+      <h1>Find gene inhibitors with traceable open-source citations.</h1>
+      <p>Search an exact human gene symbol or variant, add an optional disease context, and follow only the matching ChEMBL, PubMed, and Europe PMC evidence trail.</p>
+    </section>
+
+    <nav class="tabs" aria-label="BioAuto tools">
+      <button class="tab active" type="button" data-panel="inhibitor-panel">Gene inhibitor search</button>
+      <button class="tab" type="button" data-panel="workflow-panel">Sequence workflows</button>
+    </nav>
+
+    <section id="inhibitor-panel" class="panel active">
+      <form id="inhibitor-form" class="search-card">
+        <label>
+          Gene or variant
+          <input id="gene-query" name="gene" type="text" placeholder="PARP1, EGFR L858R, BRAF V600E" autocomplete="off" required>
+        </label>
+        <label>
+          Exact disease or tissue context
+          <input id="context-query" name="context" type="text" placeholder="fallopian tube cancer, lung adenocarcinoma">
+        </label>
+        <label>
+          Exclude citation terms
+          <input id="exclude-query" name="exclude" type="text" placeholder="ovarian, prostate">
+        </label>
+        <label class="checkbox-row">
+          <input id="require-context" name="require_context" type="checkbox" checked>
+          Require exact-context citation when context is provided
+        </label>
+        <label>
+          Max inhibitors
+          <input id="inhibitor-limit" name="limit" type="number" min="1" max="50" value="50">
+        </label>
+        <button id="inhibitor-button" type="submit">Find exact inhibitors</button>
+        <p class="fine-print">Strict mode avoids fuzzy gene matches and will not substitute related disease evidence. If exact context citations are absent, it returns no contextual hit.</p>
+      </form>
+
+      <section class="results inhibitor-results" aria-live="polite">
+        <div class="results-heading">
+          <div>
+            <p class="eyebrow">Evidence table</p>
+            <h2>Inhibitors and citations</h2>
+          </div>
+          <span id="inhibitor-count" class="pill">Ready</span>
+        </div>
+        <div id="inhibitor-status">Type a gene symbol to begin.</div>
+        <div id="target-card" class="target-card hidden"></div>
+        <div id="inhibitor-list" class="inhibitor-list"></div>
+      </section>
+    </section>
+
+    <section id="workflow-panel" class="panel">
+      <section class="workspace">
+        <form id="run-form">
+          <label>
+            Workflow
+            <select id="workflow" name="workflow"></select>
+          </label>
+
+          <div id="workflow-details" class="details"></div>
+
+          <label>
+            Input file
+            <input id="input-file" name="input_file" type="file" required>
+          </label>
+
+          <label>
+            Threads
+            <input id="threads" name="threads" type="number" min="1" max="32" value="2">
+          </label>
+
+          <label id="database-row" class="hidden">
+            BLAST database path
+            <input id="database" name="database" type="text" placeholder="C:\data\blastdb\nt">
+          </label>
+
+          <button id="run-button" type="submit">Run workflow</button>
+        </form>
+
+        <section class="results" aria-live="polite">
+          <h2>Run output</h2>
+          <div id="status">Ready.</div>
+          <pre id="stdout"></pre>
+          <div id="files"></div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
